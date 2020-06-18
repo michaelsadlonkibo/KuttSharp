@@ -85,6 +85,68 @@
             <param name="id">ID of the shortened URL</param>
             <param name="domain"> Required if a custom domain is used for short URL</param>
         </member>
+        <member name="T:KuttSharp.KuttApiV2">
+            <summary>
+            Provides an interface for calling Kutt.it url shortening services (v2 API).
+            </summary>
+        </member>
+        <member name="P:KuttSharp.KuttApiV2.KuttServer">
+            <summary>
+            Determines the server that the requests send to
+            </summary>
+        </member>
+        <member name="P:KuttSharp.KuttApiV2.ApiKey">
+            <summary>
+            ApiKey used to authorize requests to the KuttServer service
+            </summary>
+        </member>
+        <member name="M:KuttSharp.KuttApiV2.#ctor(System.String)">
+            <summary>
+            Creates an Api which communicates with the default Kutt server
+            </summary>
+            <param name="apiKey"></param>
+        </member>
+        <member name="M:KuttSharp.KuttApiV2.#ctor(System.String,System.Uri)">
+            <summary>
+            Creates an Api which communicates with a self-hosted Kutt server
+            </summary>
+            <param name="apiKey"></param>
+            <param name="server">Determines the server that the requests send to</param>
+        </member>
+        <member name="M:KuttSharp.KuttApiV2.#ctor(System.String,System.String)">
+            <summary>
+            Creates an Api which communicates with a self-hosted Kutt server
+            </summary>
+            <param name="apiKey"></param>
+            <param name="server">Determines the server that the requests send to</param>
+        </member>
+        <member name="M:KuttSharp.KuttApiV2.#ctor(System.String,System.String,System.Net.Http.HttpClient)">
+            <summary>
+            Creates an Api which communicates with a self-hosted Kutt server
+            </summary>
+            <param name="apiKey"></param>
+            <param name="server">Determines the server that the requests send to</param>
+            <param name="client">Use custom httpClient for request (useful for proxy or other modifications to the client handler)</param>
+        </member>
+        <member name="M:KuttSharp.KuttApiV2.#ctor(System.String,System.Uri,System.Net.Http.HttpClient)">
+            <summary>
+            Creates an Api which communicates with a self-hosted Kutt server
+            </summary>
+            <param name="apiKey"></param>
+            <param name="server">Determines the server that the requests send to</param>
+            <param name="client">Use custom httpClient for request (useful for proxy or other modifications to the client handler)</param>
+        </member>
+        <member name="M:KuttSharp.KuttApiV2.CreateLinkAsync(System.String,System.String,System.String,System.Boolean,System.String)">
+            <summary>
+            Create a link
+            </summary>
+            <param name="target">Target URL to be shortened</param>
+            <param name="password">Set a password</param>
+            <param name="customUrl">Set a custom URL</param>
+            <param name="reuse">If a URL with the specified target exists returns it, otherwise will send a new shortened URL. Default is false.</param>
+            <param name="domain">Set a custom domain</param>
+            <returns>Created link as a <see cref="T:KuttSharp.Models.V2.KuttLink"/></returns>
+        </member>
         <member name="T:KuttSharp.KuttException">
             <summary>
             Exceptions that are related to Kutt Api
@@ -213,6 +275,61 @@
         <member name="P:KuttSharp.Models.UrlStats.AllTime">
             <summary>
             Stats for all time
+            </summary>
+        </member>
+        <member name="T:KuttSharp.Models.V2.KuttLink">
+            <summary>
+            Represents a Kutt Link object.
+            </summary>
+        </member>
+        <member name="P:KuttSharp.Models.V2.KuttLink.Id">
+            <summary>
+            Unique ID of the link
+            </summary>
+        </member>
+        <member name="P:KuttSharp.Models.V2.KuttLink.Target">
+            <summary>
+            Where the link will redirect to
+            </summary>
+        </member>
+        <member name="P:KuttSharp.Models.V2.KuttLink.IsPasswordRequired">
+            <summary>
+            Whether or not a password is required
+            </summary>
+        </member>
+        <member name="P:KuttSharp.Models.V2.KuttLink.IsBanned">
+            <summary>
+            Whether or not this link is banned
+            </summary>
+        </member>
+        <member name="P:KuttSharp.Models.V2.KuttLink.Address">
+            <summary>
+            The link address (ID portion of the link)
+            </summary>
+        </member>
+        <member name="P:KuttSharp.Models.V2.KuttLink.Link">
+            <summary>
+            The shortened link
+            </summary>
+        </member>
+        <member name="P:KuttSharp.Models.V2.KuttLink.Domain">
+            <summary>
+            The custom domain used for this link, if set
+            </summary>
+        </member>
+        <member name="P:KuttSharp.Models.V2.KuttLink.Visits">
+            <summary>
+            The amount of visits to this link
+            </summary>
+        </member>
+        <member name="P:KuttSharp.Models.V2.KuttLink.CreatedAt">
+            <summary>
+            When the link was created
+            </summary>
+        </member>
+        <member name="P:KuttSharp.Models.V2.KuttLink.UpdatedAt">
+            <summary>
+            When the link was updated
             </summary>
         </member>
     </members>
